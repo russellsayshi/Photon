@@ -1,4 +1,4 @@
-#include "SDL.h"
+#include "SDL2-2.0.8/include/SDL.h"
 #include <stdio.h>
 
 //from the sdl tutorial
