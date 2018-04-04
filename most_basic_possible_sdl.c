@@ -1,5 +1,6 @@
-#include "SDL2-2.0.8/include/SDL.h"
+#include <SDL2/SDL.h>
 #include <stdio.h>
+#include <math.h>
 
 //from the sdl tutorial
 //and tweaked
@@ -16,8 +17,8 @@ void set_pixel_raw(SDL_Surface *surface, int x, int y, Uint32 pixel)
 	*(Uint32 *)target_pixel = pixel;
 }
 
-void set_pixel(win* window, int x, int y, Uint8 r, Uint8 g, Uint8 b) {
-	Uint32 pixel = SDL_MapRGB(const SDL_PixelFormat* window->format, r, g, b);
+void set_pixel(struct win* window, int x, int y, Uint8 r, Uint8 g, Uint8 b) {
+	Uint32 pixel = SDL_MapRGB(window->format, r, g, b);
 	set_pixel_raw(window->surface, x, y, pixel);
 }
 
@@ -43,14 +44,22 @@ int main(int argc, char* argv[]) {
 	SDL_Surface *screen;
 	screen = SDL_GetWindowSurface(window);
 	SDL_PixelFormat *format = screen->format;
-	SDL_UpdateWindowSurface(window);
 	
-	win* window = new win();
-	window->surface = screen;
-	window->window = window;
-	window->format = format;
-	set_pixel(window, 10, 10, 0, 255, 0); //set pixel (10, 10) to bright green
-	delete window;
+	struct win* window2 = (struct win*)malloc(sizeof (struct win));
+	window2->surface = screen;
+	window2->window = window;
+	window2->format = format;
+	for(int i = 10; i < 100; i++) {
+		for(int o = 10; o < 100; o++) {
+			set_pixel(window2, i, o, 0, 255, 0); //set pixel (10, 10) to bright green
+		}
+	}
+	for(int i = 0; i < 300; i++) {
+		double v = sin(((double)i)/3.141565)*10;
+		set_pixel(window2, i, 200 + (int)v, 255, 255, 255);
+	}
+	SDL_UpdateWindowSurface(window);
+	free(window2);
 
 	// Wait a lil, then close window
 	SDL_Delay(3000);
