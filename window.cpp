@@ -49,9 +49,8 @@ photon::win::~win() {
 }
 
 int photon::win::get_key() {
-	while(SDL_PollEvent(&keyevent)) {
-		switch(keyevent.type) {
-			case SDL_KEYDOWN:
+	while(SDL_WaitEvent(&keyevent)) {
+		if(keyevent.type == SDL_KEYDOWN) {
 				return 0;
 		}
 	}
