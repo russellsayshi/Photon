@@ -15,19 +15,22 @@ photon::win::win(std::string name, int width, int height) {
 		SDL_WINDOW_OPENGL
 	);
 
-	if (window == NULL) {
+	if (window == nullptr) {
 		std::stringstream s;
 		s << "Something is very wrong: " << SDL_GetError();
 		throw std::runtime_error(s.str());
 	}
+	windowID = SDL_GetWindowID(window);
 	surface = SDL_GetWindowSurface(window);
 	format = surface->format;
+	clear();
 }
 
 photon::win::~win() {
 	if(window != nullptr) {
 		SDL_DestroyWindow(window);
 	}
+	photon::video::destroy();
 }
 
 void photon::win::set_pixel_raw(int x, int y, Uint32 pixel) {
@@ -41,8 +44,12 @@ void photon::win::set_pixel_raw(int x, int y, Uint32 pixel) {
 	*(Uint32 *)target_pixel = pixel;
 }
 
+Uint32 photon::win::rgbToPixel(Uint8 r, Uint8 g, Uint8 b) {
+	return SDL_MapRGB(format, r, g, b);
+}
+
 void photon::win::set_pixel(int x, int y, Uint8 r, Uint8 g, Uint8 b) {
-	Uint32 pixel = SDL_MapRGB(format, r, g, b);
+	Uint32 pixel = rgbToPixel(r, g, b);
 	set_pixel_raw(x, y, pixel);
 }
 
@@ -50,8 +57,12 @@ void photon::win::update() {
 	SDL_UpdateWindowSurface(window);
 }
 
+void photon::win::fill(Uint8 r, Uint8 g, Uint8 b) {
+	SDL_FillRect(surface, nullptr, rgbToPixel(r, g, b));
+}
+
 void photon::win::clear() {
-	SDL_FillRect(surface, NULL, 0x000000);
+	SDL_FillRect(surface, nullptr, rgbToPixel(0, 0, 0));
 }
 
 int photon::win::get_key() {

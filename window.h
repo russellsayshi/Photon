@@ -13,9 +13,11 @@ namespace photon {
 		SDL_Surface* surface;
 		SDL_PixelFormat* format;
 		SDL_Window* window;
+		int windowID;
 		int width;
 		int height;
 		SDL_Event keyevent;
+		Uint32 rgbToPixel(Uint8 r, Uint8 g, Uint8 b);
 	
 	protected:
 		void set_pixel_raw(int x, int y, Uint32 pixel);
@@ -25,9 +27,10 @@ namespace photon {
 		~win();
 		void set_pixel(int x, int y, Uint8 r, Uint8 g, Uint8 b);
 		void update();
+		void fill(Uint8 r, Uint8 g, Uint8 b);
 		void clear();
 		void delay(int time);
-		int get_key(); 
+		int get_key();
 	};
 
 };
