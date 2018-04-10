@@ -22,9 +22,10 @@ namespace photon {
 	
 	public:
 		win(std::string name, int width, int height);
+		~win();
 		void set_pixel(int x, int y, Uint8 r, Uint8 g, Uint8 b);
 		void update();
-		~win();
+		void clear();
 		void delay(int time);
 		int get_key(); 
 	};

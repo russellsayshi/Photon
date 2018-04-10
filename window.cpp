@@ -1,4 +1,5 @@
 #include "window.h"
+#include <iostream>
 
 photon::win::win(std::string name, int width, int height) {
 	this->width = width;
@@ -23,7 +24,14 @@ photon::win::win(std::string name, int width, int height) {
 	format = surface->format;
 }
 
+photon::win::~win() {
+	if(window != nullptr) {
+		SDL_DestroyWindow(window);
+	}
+}
+
 void photon::win::set_pixel_raw(int x, int y, Uint32 pixel) {
+	SDL_LockSurface( surface );
 	if(x < 0 || y < 0 || x >= surface->w || y >= surface->h) {
 		std::stringstream error_msg;
 		error_msg << "Out of bounds! x is " << x << " and y is " << y << ". X needs to be between 0 and " << width << " and y between 0 and " << height << ".";
@@ -38,14 +46,12 @@ void photon::win::set_pixel(int x, int y, Uint8 r, Uint8 g, Uint8 b) {
 	set_pixel_raw(x, y, pixel);
 }
 
-void photon::win::update() {	
+void photon::win::update() {
 	SDL_UpdateWindowSurface(window);
 }
 
-photon::win::~win() {
-	if(window != nullptr) {
-		SDL_DestroyWindow(window);
-	}
+void photon::win::clear() {
+	SDL_FillRect(surface, NULL, 0x000000);
 }
 
 int photon::win::get_key() {
@@ -54,6 +60,7 @@ int photon::win::get_key() {
 				return 0;
 		}
 	}
+	return 1;
 }
 
 void photon::win::delay(int time) {
