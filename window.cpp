@@ -53,12 +53,24 @@ void photon::win::set_pixel(int x, int y, Uint8 r, Uint8 g, Uint8 b) {
 	set_pixel_raw(x, y, pixel);
 }
 
+void photon::win::set_pixel(int x, int y, Colors::color c) {
+	Uint8 r, g, b;
+	std::tie(r, g, b) = c;
+	set_pixel(x, y, r, g, b);
+}
+
 void photon::win::update() {
 	SDL_UpdateWindowSurface(window);
 }
 
 void photon::win::fill(Uint8 r, Uint8 g, Uint8 b) {
 	SDL_FillRect(surface, nullptr, rgbToPixel(r, g, b));
+}
+
+void photon::win::fill(Colors::color c) {
+	Uint8 r, g, b;
+	std::tie(r, g, b) = c;
+	fill(r, g, b);
 }
 
 void photon::win::clear() {

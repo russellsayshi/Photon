@@ -5,7 +5,7 @@ find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
 set(SOURCES)
-set(HEADERS)
+set(HEADERS Colors.h)
 file(GLOB SOURCES "*.cpp")
 file(GLOB HEADERS "*.h")
 

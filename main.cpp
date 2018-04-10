@@ -6,13 +6,11 @@
 
 
 int main(int argc, char* argv[]) {
-	photon::win window("apollo drizzle2", 640, 480);
-
-//	window.clear(250, 125, 115);
+	photon::win window("apollo drizzle", 640, 480);
 
 	for (int i = 10; i < 100; i++) {
 		for (int o = 10; o < 100; o++) {
-			window.set_pixel(i, o, 0 , 255, 0); //set pixel (10, 10) to bright green
+			window.set_pixel(i, o, Colors::red); //set pixel (10, 10) to bright green
 		}
 	}
 

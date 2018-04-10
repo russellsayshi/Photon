@@ -2,6 +2,8 @@
 #include <sstream>
 #include <exception>
 #include "video.h"
+#include "Colors.h"
+#include <tuple>
 
 #ifndef PROTON_WIN_HEADER
 #define PROTON_WIN_HEADER
@@ -26,8 +28,10 @@ namespace photon {
 		win(std::string name, int width, int height);
 		~win();
 		void set_pixel(int x, int y, Uint8 r, Uint8 g, Uint8 b);
+		void set_pixel(int x, int y, Colors::color c);
 		void update();
 		void fill(Uint8 r, Uint8 g, Uint8 b);
+		void fill(Colors::color c);
 		void clear();
 		void delay(int time);
 		int get_key();
