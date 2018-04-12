@@ -1,3 +1,0 @@
-/Users/jimmybeckett/src/Photon/build/CMakeFiles/rebuild_cache.dir
-/Users/jimmybeckett/src/Photon/build/CMakeFiles/edit_cache.dir
-/Users/jimmybeckett/src/Photon/build/CMakeFiles/main.out.dir

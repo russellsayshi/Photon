@@ -1,1 +1,0 @@
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/main.out.dir/Video.cpp.o CMakeFiles/main.out.dir/main.cpp.o CMakeFiles/main.out.dir/window.cpp.o CMakeFiles/main.out.dir/shapes/Sphere.cpp.o  -o main.out -L/usr/local/Cellar/sdl2/2.0.8/lib  -lSDL2 
