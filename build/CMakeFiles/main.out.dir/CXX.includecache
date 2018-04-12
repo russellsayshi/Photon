@@ -21,14 +21,14 @@ iostream
 -
 
 /Users/jimmybeckett/src/Photon/main.cpp
-
-/Users/jimmybeckett/src/Photon/potatoe.cpp
 iostream
 -
+SDL2/SDL.h
+-
+window.h
+/Users/jimmybeckett/src/Photon/window.h
 util/Vec3.h
 /Users/jimmybeckett/src/Photon/util/Vec3.h
-util/Point.h
-/Users/jimmybeckett/src/Photon/util/Point.h
 util/Ray.h
 /Users/jimmybeckett/src/Photon/util/Ray.h
 shapes/Sphere.h

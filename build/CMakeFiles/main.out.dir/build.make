@@ -105,33 +105,9 @@ CMakeFiles/main.out.dir/main.cpp.o.provides: CMakeFiles/main.out.dir/main.cpp.o.
 CMakeFiles/main.out.dir/main.cpp.o.provides.build: CMakeFiles/main.out.dir/main.cpp.o
 
 
-CMakeFiles/main.out.dir/potatoe.cpp.o: CMakeFiles/main.out.dir/flags.make
-CMakeFiles/main.out.dir/potatoe.cpp.o: ../potatoe.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jimmybeckett/src/Photon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.out.dir/potatoe.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.out.dir/potatoe.cpp.o -c /Users/jimmybeckett/src/Photon/potatoe.cpp
-
-CMakeFiles/main.out.dir/potatoe.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.out.dir/potatoe.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jimmybeckett/src/Photon/potatoe.cpp > CMakeFiles/main.out.dir/potatoe.cpp.i
-
-CMakeFiles/main.out.dir/potatoe.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.out.dir/potatoe.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jimmybeckett/src/Photon/potatoe.cpp -o CMakeFiles/main.out.dir/potatoe.cpp.s
-
-CMakeFiles/main.out.dir/potatoe.cpp.o.requires:
-
-.PHONY : CMakeFiles/main.out.dir/potatoe.cpp.o.requires
-
-CMakeFiles/main.out.dir/potatoe.cpp.o.provides: CMakeFiles/main.out.dir/potatoe.cpp.o.requires
-	$(MAKE) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/potatoe.cpp.o.provides.build
-.PHONY : CMakeFiles/main.out.dir/potatoe.cpp.o.provides
-
-CMakeFiles/main.out.dir/potatoe.cpp.o.provides.build: CMakeFiles/main.out.dir/potatoe.cpp.o
-
-
 CMakeFiles/main.out.dir/window.cpp.o: CMakeFiles/main.out.dir/flags.make
 CMakeFiles/main.out.dir/window.cpp.o: ../window.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jimmybeckett/src/Photon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.out.dir/window.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jimmybeckett/src/Photon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.out.dir/window.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.out.dir/window.cpp.o -c /Users/jimmybeckett/src/Photon/window.cpp
 
 CMakeFiles/main.out.dir/window.cpp.i: cmake_force
@@ -155,7 +131,7 @@ CMakeFiles/main.out.dir/window.cpp.o.provides.build: CMakeFiles/main.out.dir/win
 
 CMakeFiles/main.out.dir/shapes/Sphere.cpp.o: CMakeFiles/main.out.dir/flags.make
 CMakeFiles/main.out.dir/shapes/Sphere.cpp.o: ../shapes/Sphere.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jimmybeckett/src/Photon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.out.dir/shapes/Sphere.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jimmybeckett/src/Photon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.out.dir/shapes/Sphere.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.out.dir/shapes/Sphere.cpp.o -c /Users/jimmybeckett/src/Photon/shapes/Sphere.cpp
 
 CMakeFiles/main.out.dir/shapes/Sphere.cpp.i: cmake_force
@@ -181,7 +157,6 @@ CMakeFiles/main.out.dir/shapes/Sphere.cpp.o.provides.build: CMakeFiles/main.out.
 main_out_OBJECTS = \
 "CMakeFiles/main.out.dir/Video.cpp.o" \
 "CMakeFiles/main.out.dir/main.cpp.o" \
-"CMakeFiles/main.out.dir/potatoe.cpp.o" \
 "CMakeFiles/main.out.dir/window.cpp.o" \
 "CMakeFiles/main.out.dir/shapes/Sphere.cpp.o"
 
@@ -190,12 +165,11 @@ main_out_EXTERNAL_OBJECTS =
 
 main.out: CMakeFiles/main.out.dir/Video.cpp.o
 main.out: CMakeFiles/main.out.dir/main.cpp.o
-main.out: CMakeFiles/main.out.dir/potatoe.cpp.o
 main.out: CMakeFiles/main.out.dir/window.cpp.o
 main.out: CMakeFiles/main.out.dir/shapes/Sphere.cpp.o
 main.out: CMakeFiles/main.out.dir/build.make
 main.out: CMakeFiles/main.out.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/jimmybeckett/src/Photon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable main.out"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/jimmybeckett/src/Photon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable main.out"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.out.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -205,7 +179,6 @@ CMakeFiles/main.out.dir/build: main.out
 
 CMakeFiles/main.out.dir/requires: CMakeFiles/main.out.dir/Video.cpp.o.requires
 CMakeFiles/main.out.dir/requires: CMakeFiles/main.out.dir/main.cpp.o.requires
-CMakeFiles/main.out.dir/requires: CMakeFiles/main.out.dir/potatoe.cpp.o.requires
 CMakeFiles/main.out.dir/requires: CMakeFiles/main.out.dir/window.cpp.o.requires
 CMakeFiles/main.out.dir/requires: CMakeFiles/main.out.dir/shapes/Sphere.cpp.o.requires
 

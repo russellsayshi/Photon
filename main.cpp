@@ -1,33 +1,55 @@
-//#include <SDL2/SDL.h>
-//#include "window.h"
-//
-////from the sdl tutorial
-////and tweaked
-//
-//
-//int main(int argc, char* argv[]) {
-//	photon::win window("apollo drizzle", 640, 480);
-//
-//	window.fill(Colors::pink);
-//
-//	for (int i = 10; i < 100; i++) {
-//		for (int o = 10; o < 100; o++) {
-//			window.set_pixel(i, o, Colors::lightBlue); //set pixel (10, 10) to red
-//		}
-//	}
-//
-//	int thickness = 35;
-//	for(int i = 0; i < 300; i++) {
-//		double v = sin(((double)i)/(3.141565*4))*30;
-//		int desired_y = 200 + (int)v;
-//		for(int o = desired_y - thickness; o < desired_y + thickness; o++) {
-//			Uint8 brightness = (Uint8)(255-(int)((abs((double)(desired_y - o)))/thickness * 255));
-//			window.set_pixel(i, o, Colors::yellow);
-//		}
-//	}
-//
-//	window.update();
-//	window.get_key();
-//
-//	return 0;
-//}
+#include <iostream>
+
+#include <SDL2/SDL.h>
+
+#include "window.h"
+
+#include "util/Vec3.h"
+#include "util/Ray.h"
+#include "shapes/Sphere.h"
+
+
+int main(int argc, char* argv[]) {
+	int height = 640;
+	int width = 640;
+
+	photon::win window("apollo drizzle", height, width);
+
+	window.fill(Colors::pink);
+
+	Sphere* spheres[5];
+	spheres[0] = new Sphere(0, 0, 0, 1);
+	spheres[1] = new Sphere(0, 3, 0, 1);
+	spheres[2] = new Sphere(0, 6, 0, 1);
+	spheres[3] = new Sphere(0, 9, 0, 1);
+	spheres[4] = new Sphere(0, 12, 0, 1);
+
+	float xVal = 15.0;
+	float yVal = 0.0;
+	float zVal = 0.0;
+
+	double zoom = .5;
+
+	Ray *rays[height][width];
+
+	for (int row = 0; row < height; row++)
+		for (int col = 0; col < width; col++) {
+			auto deltaZ = (float)(zoom * ((height - 2.0 * ((float)row)) / height));
+			auto deltaY = (float)(zoom * ((width - 2.0 * ((float)col)) / width));
+			rays[row][col] = new Ray(xVal, yVal, zVal, 1, deltaY, deltaZ);
+		}
+
+	for (int row = 0; row < height; row++)
+		for (int col = 0; col < width; col++)
+			for (Sphere* s : spheres)
+				if (s->intersects(rays[row][col])) {
+					window.set_pixel(row, col, Colors::lightBlue);
+					break;
+				}
+
+	window.update();
+	window.get_key();
+
+	return 0;
+}
+

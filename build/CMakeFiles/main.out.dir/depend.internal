@@ -5,13 +5,14 @@ CMakeFiles/main.out.dir/Video.cpp.o
  /Users/jimmybeckett/src/Photon/Video.cpp
  /Users/jimmybeckett/src/Photon/Video.h
 CMakeFiles/main.out.dir/main.cpp.o
+ /Users/jimmybeckett/src/Photon/Colors.h
+ /Users/jimmybeckett/src/Photon/Video.h
  /Users/jimmybeckett/src/Photon/main.cpp
-CMakeFiles/main.out.dir/potatoe.cpp.o
- /Users/jimmybeckett/src/Photon/potatoe.cpp
  /Users/jimmybeckett/src/Photon/shapes/Sphere.h
  /Users/jimmybeckett/src/Photon/util/Point.h
  /Users/jimmybeckett/src/Photon/util/Ray.h
  /Users/jimmybeckett/src/Photon/util/Vec3.h
+ /Users/jimmybeckett/src/Photon/window.h
 CMakeFiles/main.out.dir/shapes/Sphere.cpp.o
  /Users/jimmybeckett/src/Photon/shapes/Sphere.cpp
  /Users/jimmybeckett/src/Photon/shapes/Sphere.h

@@ -177,33 +177,6 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-potatoe.o: potatoe.cpp.o
-
-.PHONY : potatoe.o
-
-# target to build an object file
-potatoe.cpp.o:
-	$(MAKE) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/potatoe.cpp.o
-.PHONY : potatoe.cpp.o
-
-potatoe.i: potatoe.cpp.i
-
-.PHONY : potatoe.i
-
-# target to preprocess a source file
-potatoe.cpp.i:
-	$(MAKE) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/potatoe.cpp.i
-.PHONY : potatoe.cpp.i
-
-potatoe.s: potatoe.cpp.s
-
-.PHONY : potatoe.s
-
-# target to generate assembly for a file
-potatoe.cpp.s:
-	$(MAKE) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/potatoe.cpp.s
-.PHONY : potatoe.cpp.s
-
 shapes/Sphere.o: shapes/Sphere.cpp.o
 
 .PHONY : shapes/Sphere.o
@@ -273,9 +246,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... potatoe.o"
-	@echo "... potatoe.i"
-	@echo "... potatoe.s"
 	@echo "... shapes/Sphere.o"
 	@echo "... shapes/Sphere.i"
 	@echo "... shapes/Sphere.s"

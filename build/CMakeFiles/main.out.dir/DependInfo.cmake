@@ -6,7 +6,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/jimmybeckett/src/Photon/Video.cpp" "/Users/jimmybeckett/src/Photon/build/CMakeFiles/main.out.dir/Video.cpp.o"
   "/Users/jimmybeckett/src/Photon/main.cpp" "/Users/jimmybeckett/src/Photon/build/CMakeFiles/main.out.dir/main.cpp.o"
-  "/Users/jimmybeckett/src/Photon/potatoe.cpp" "/Users/jimmybeckett/src/Photon/build/CMakeFiles/main.out.dir/potatoe.cpp.o"
   "/Users/jimmybeckett/src/Photon/shapes/Sphere.cpp" "/Users/jimmybeckett/src/Photon/build/CMakeFiles/main.out.dir/shapes/Sphere.cpp.o"
   "/Users/jimmybeckett/src/Photon/window.cpp" "/Users/jimmybeckett/src/Photon/build/CMakeFiles/main.out.dir/window.cpp.o"
   )
