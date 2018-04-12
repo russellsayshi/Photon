@@ -26,7 +26,7 @@ namespace photon {
 		void set_pixel_raw(int x, int y, Uint32 pixel);
 	
 	public:
-		win(std::string name, int width, int height);
+		win(std::string name, int width, int height, bool fullscreen=false);
 		~win();
 		void set_pixel(int x, int y, Uint8 r, Uint8 g, Uint8 b);
 		void set_pixel(int x, int y, Colors::color c);

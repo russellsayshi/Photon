@@ -1,10 +1,14 @@
 #include "window.h"
 #include <iostream>
 
-photon::win::win(std::string name, int width, int height) {
+photon::win::win(std::string name, int width, int height, bool fullscreen) {
 	this->width = width;
 	this->height = height;
 	photon::Video::initialize();
+
+	int f = 0;
+	if (fullscreen)
+		f = SDL_WINDOW_FULLSCREEN;
 
 	window = SDL_CreateWindow(
 		name.c_str(),
@@ -12,7 +16,7 @@ photon::win::win(std::string name, int width, int height) {
 		SDL_WINDOWPOS_UNDEFINED,
 		width,
 		height,
-		SDL_WINDOW_OPENGL
+		SDL_WINDOW_OPENGL | f
 	);
 
 	if (window == nullptr) {
