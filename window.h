@@ -1,9 +1,10 @@
 #include <SDL2/SDL.h>
 #include <sstream>
 #include <exception>
-#include "video.h"
-#include "Colors.h"
 #include <tuple>
+
+#include "Video.h"
+#include "Colors.h"
 
 #ifndef PROTON_WIN_HEADER
 #define PROTON_WIN_HEADER

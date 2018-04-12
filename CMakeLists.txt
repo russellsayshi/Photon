@@ -5,9 +5,9 @@ find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
 set(SOURCES)
-set(HEADERS Colors.h)
-file(GLOB SOURCES "*.cpp")
-file(GLOB HEADERS "*.h")
+set(HEADERS)
+file(GLOB SOURCES "*.cpp" "shapes/*.cpp" "util/*.cpp")
+file(GLOB HEADERS "*.h" "shapes/*.cpp" "util/*.cpp")
 
 set(CMAKE_CXX_STANDARD 17)
 

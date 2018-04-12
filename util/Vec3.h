@@ -5,22 +5,12 @@
 #include <cmath>
 #include <string>
 
-class Vec3 {
+struct Vec3 {
     float x, y, z;
-public:
+
     //constructors
     Vec3() : x(0), y(0), z(0) {}
     Vec3(const float x, const float y, const float z) : x(x), y(y), z(z) {}
-    
-    //getters
-    float getX() const { return x; }
-    float getY() const { return y; }
-    float getZ() const { return z; }
-
-    //setters
-    void setX(float x) { this->x = x; }
-    void setY(float y) { this->y = y; }
-    void setZ(float z) { this->z = z; }
 
     //operators
     Vec3 operator+(const Vec3& other) const { return Vec3 (this->x + other.x, this->y + other.y, this->z + other.z); } //addition

@@ -5,7 +5,7 @@
 #define PHOTON_VID_HEADER
 
 namespace photon {
-	class video {
+	class Video {
 	public:
 		static void initialize();
 		static void destroy();

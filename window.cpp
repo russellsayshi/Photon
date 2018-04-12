@@ -4,7 +4,7 @@
 photon::win::win(std::string name, int width, int height) {
 	this->width = width;
 	this->height = height;
-	photon::video::initialize();
+	photon::Video::initialize();
 
 	window = SDL_CreateWindow(
 		name.c_str(),
@@ -30,7 +30,7 @@ photon::win::~win() {
 	if(window != nullptr) {
 		SDL_DestroyWindow(window);
 	}
-	photon::video::destroy();
+	photon::Video::destroy();
 }
 
 void photon::win::set_pixel_raw(int x, int y, Uint32 pixel) {
