@@ -17,26 +17,24 @@ int main(int argc, char* argv[]) {
 
 	window.fill(Colors::pink);
 
-	Sphere* spheres[5];
-	spheres[0] = new Sphere(0, 0, 0, 1);
-	spheres[1] = new Sphere(0, 3, 0, 1);
-	spheres[2] = new Sphere(0, 6, 0, 1);
-	spheres[3] = new Sphere(0, 9, 0, 1);
-	spheres[4] = new Sphere(0, 12, 0, 1);
+	const int numSpheres = 100;
+	Sphere* spheres[numSpheres];
+	for(int i = 0; i < numSpheres; i++)
+		spheres[i] = new Sphere(0, i * 3, 0, .5);
 
-	float xVal = 15.0;
-	float yVal = 0.0;
-	float zVal = 0.0;
+	const float xCam = 20.0;
+	const float yCam = 0.0;
+	const float zCam = 0.0;
 
-	double zoom = .5;
+	double fov = .5;
 
 	Ray *rays[height][width];
 
 	for (int row = 0; row < height; row++)
 		for (int col = 0; col < width; col++) {
-			auto deltaZ = (float)(zoom * ((height - 2.0 * ((float)row)) / height));
-			auto deltaY = (float)(zoom * ((width - 2.0 * ((float)col)) / width));
-			rays[row][col] = new Ray(xVal, yVal, zVal, 1, deltaY, deltaZ);
+			auto deltaZ = (float)(fov * ((height - 2.0 * ((float)row)) / height));
+			auto deltaY = (float)(fov * ((width - 2.0 * ((float)col)) / width));
+			rays[row][col] = new Ray(xCam, yCam, zCam, 1, deltaY, deltaZ);
 		}
 
 	for (int row = 0; row < height; row++)
