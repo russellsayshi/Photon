@@ -16,6 +16,7 @@ public:
 			: center(new Point(x, y, z)), radius(radius) {}
 
 	bool intersects(Ray *r);
+	float intersectsWhen(Ray *r);
 };
 
 #endif //PHOTON_SPHERE_H
