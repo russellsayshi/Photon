@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.5)
 project(Photon)
 
 find_package(SDL2 REQUIRED)
@@ -8,6 +8,7 @@ set(SOURCES)
 set(HEADERS)
 file(GLOB SOURCES "*.cpp" "shapes/*.cpp" "util/*.cpp")
 file(GLOB HEADERS "*.h" "shapes/*.cpp" "util/*.cpp")
+set(CMAKE_CXX_FLAGS "-std=c++17")
 
 set(CMAKE_CXX_STANDARD 17)
 
