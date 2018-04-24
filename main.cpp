@@ -17,13 +17,14 @@ int main(int argc, char* argv[]) {
 
 	window.fill(Colors::white);
 
-	const int numSpheres = 100;
+	const int numSpheres = 10;
+
 	Sphere* spheres[numSpheres];
 	for(int i = 0; i < numSpheres; i++)
 		spheres[i] = new Sphere(0, i * 3, 0, i);
 
-	const float xCam = 20.0;
-	const float yCam = 10.0;
+	const float xCam = 30.0;
+	const float yCam = 15.0;
 	const float zCam = 0.0;
 
 	double fov = .5;
