@@ -21,10 +21,10 @@ int main(int argc, char* argv[]) {
 
 	Sphere* spheres[numSpheres];
 	for(int i = 0; i < numSpheres; i++)
-		spheres[i] = new Sphere(0, i * 3, 0, i);
+		spheres[i] = new Sphere(-i, 0, 0, 0.5);
 
-	const float xCam = 30.0;
-	const float yCam = 15.0;
+	const float xCam = 15.0;
+	const float yCam = 5.0;
 	const float zCam = 0.0;
 
 	double fov = .5;
@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
 				}
 			}
 			if(tMax != 10000) {
-				Colors::color c = Colors::color(sphereMax * 200, (int)(255-tMax*30), (int)(100 + tMax*30));
+				Colors::color c = Colors::color(sphereMax * 200, (int)(255-tMax*10), (int)(100 + tMax*10));
 				window.set_pixel(row, col, c);
 			}
 		}
