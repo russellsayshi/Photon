@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 	Plane* planes[numPlanes];
 
 	for(int i = 0; i < numSpheres; i++)
-		spheres[i] = new Sphere(-i, 0, 0, 3);
+		spheres[i] = new Sphere(0, 0, -i, 2);
 
 	planes[0] = new Plane(0,0,1,5,5,5);
 	planes[1] = new Plane(0,0,-1,5,-5,-5);
@@ -39,9 +39,9 @@ int main(int argc, char* argv[]) {
 	planes[2] = new Plane(0,1,0,1);
 	planes[3] = new Plane(0,-1,0,-1);
 	*/
-	bool animated = false;
+	bool animated = true;
 
-	const float xCam = 10.0;
+	const float xCam = 15.0;
 	const float yCam = 0.0;
 	const float zCam = 0.0;
 
@@ -100,9 +100,11 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		if(animated) {
-			for(int i = 0; i < numSpheres; i++)
-				spheres[i]->center = new Point(-i, sin(animVar + i), 0);
-			animVar += 0.5f;
+			for(int i = 0; i < numSpheres; i++) {
+				spheres[i]->center = new Point(3 * sin((animVar +i) * cos(2 * animVar)), sin(animVar + i) * 3, 5 - i + cos(1.5f * animVar + 2*i));
+				spheres[i]->radius = (float)(2+sin(animVar + i));
+			}
+			animVar += 0.01f;
 			window.update();
 		} else {
 			window.update();
