@@ -5,9 +5,9 @@ bool Plane::intersects(Ray* r) {
 	double a = normal->x;
 	double b = normal->y;
 	double c = normal->z;
-	double e = ray->vector->x;
-	double g = ray->vector->y;
-	double i = ray->vector->z;
+	double e = r->vector->x;
+	double g = r->vector->y;
+	double i = r->vector->z;
 	double denominator = a*e + b*g + c*i;
 	if(denominator == 0) {
 		return false;
@@ -28,7 +28,7 @@ double Plane::intersectsWhen(Ray* ray) {
 	double j = ray->point->z;
 	double numerator = a*f + b*h + c*j + d;
 	double denominator = a*e + b*g + c*i;
-	double ans = -1 * numerator / denominator
+	double ans = -1 * numerator / denominator;
 	if(ans < 0) {
 		return -1;
 	}
