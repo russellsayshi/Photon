@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
 	const float zCam = 0.0;
 
 	double fov = .5;
-
+	float animVar = 0;
 	Ray *rays[height][width];
 
 	for (int row = 0; row < height; row++)
@@ -54,52 +54,55 @@ int main(int argc, char* argv[]) {
 			auto deltaY = (float)(fov * ((width - 2.0 * ((float)col)) / width));
 			rays[row][col] = new Ray(xCam, yCam, zCam, 1, deltaY, deltaZ);
 		}
-
-	for (int row = 0; row < height; row++) {
-		for (int col = 0; col < width; col++) {
-			float tMax = 10000;
-			bool multi = false;
-			int planeMax = -1;
-			for (int plane = 0; plane < numPlanes; plane++) {
-				Plane* p = planes[plane];
-				float t = p->intersectsWhen(rays[row][col]);
-				if (t < tMax && t > 0) {
-					if(tMax != 10000) multi = true;
-					tMax = t;
-					planeMax = plane;
-					//std::cout << t << std::endl;
+	while(true) {
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				float tMax = 10000;
+				bool multi = false;
+				int planeMax = -1;
+				for (int plane = 0; plane < numPlanes; plane++) {
+					Plane* p = planes[plane];
+					float t = p->intersectsWhen(rays[row][col]);
+					if (t < tMax && t > 0) {
+						if(tMax != 10000) multi = true;
+						tMax = t;
+						planeMax = plane;
+						//std::cout << t << std::endl;
+					}
+				}
+				if(tMax != 10000) {
+					Colors::color c = Colors::color(planeMax * 200, (int)(255-tMax*10), (int)(100 + tMax*10));
+					window.set_pixel(row, col, c);
 				}
 			}
-			if(tMax != 10000) {
-				Colors::color c = Colors::color(planeMax * 200, (int)(255-tMax*10), (int)(100 + tMax*10));
-				window.set_pixel(row, col, c);
-			}
 		}
-	}
 
-	for (int row = 0; row < height; row++) {
-		for (int col = 0; col < width; col++) {
-			float tMax = 10000;
-			bool multi = false;
-			int sphereMax = -1;
-			for (int sphere = 0; sphere < numSpheres; sphere++) {
-				Sphere* s = spheres[sphere];
-				float t = s->intersectsWhen(rays[row][col]);
-				if (t < tMax && t > 0) {
-					if(tMax != 10000) multi = true;
-					tMax = t;
-					sphereMax = sphere;
-					//std::cout << t << std::endl;
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				float tMax = 10000;
+				bool multi = false;
+				int sphereMax = -1;
+				for (int sphere = 0; sphere < numSpheres; sphere++) {
+					Sphere* s = spheres[sphere];
+					float t = s->intersectsWhen(rays[row][col]);
+					if (t < tMax && t > 0) {
+						if(tMax != 10000) multi = true;
+						tMax = t;
+						sphereMax = sphere;
+						//std::cout << t << std::endl;
+					}
+				}
+				if(tMax != 10000) {
+					Colors::color c = Colors::color(sphereMax * 200, (int)(255-tMax*10), (int)(100 + tMax*10));
+					window.set_pixel(row, col, c);
 				}
 			}
-			if(tMax != 10000) {
-				Colors::color c = Colors::color(sphereMax * 200, (int)(255-tMax*10), (int)(100 + tMax*10));
-				window.set_pixel(row, col, c);
-			}
 		}
+		for(int i = 0; i < numSpheres; i++)
+			spheres[i]->center = new Point(-i, sin(animVar + i), 0);
+		animVar += 0.5f;
+		window.update();
 	}
-
-	window.update();
 	window.get_key();
 
 	return 0;
