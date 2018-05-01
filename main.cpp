@@ -101,7 +101,9 @@ int main(int argc, char* argv[]) {
 		}
 		if(animated) {
 			for(int i = 0; i < numSpheres; i++) {
-				spheres[i]->center = new Point(3 * sin((animVar +i) * cos(2 * animVar)), sin(animVar + i) * 3, 5 - i + cos(1.5f * animVar + 2*i));
+				spheres[i]->center->x = 3 * sin((animVar +i) * cos(2 * animVar));
+				spheres[i]->center->y = sin(animVar + i) * 3;
+				spheres[i]->center->z = 5 - i + cos(1.5f * animVar + 2*i);
 				spheres[i]->radius = (float)(2+sin(animVar + i));
 			}
 			animVar += 0.01f;
