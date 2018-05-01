@@ -32,5 +32,5 @@ double Plane::intersectsWhen(Ray* ray) {
 	if(ans < 0) {
 		return -1;
 	}
-	return ans;
+	return ans * (double)(ray->vector->mag());
 }

@@ -31,7 +31,9 @@ double Sphere::intersectsWhen(Ray *r) {
 	double b = 2 * ((x2-x1)*(x1-x3) + (y2-y1)*(y1-y3) + (z2-z1)*(z1-z3));
 	double c = x3*x3 + y3*y3 + z3*z3 + x1*x1 + y1*y1 + z1*z1 - 2*(x3*x1 + y3*y1 + z3*z1) - rad * rad;
 	double det = b*b - 4 * a * c;
-	if(det < 0) return -1;
+	if(det < 0) {
+		return -1;
+	}
 	double t = (-b + (double)sqrt(det))/(2*a);
-	return -t;
+	return -t * (double)(ray->vector->mag());
 }
