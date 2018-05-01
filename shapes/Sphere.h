@@ -5,7 +5,7 @@
 #define PHOTON_SPHERE_H
 
 
-class Sphere {
+class Sphere : public Shape {
 public:
 	Point *center;
 	float radius;
@@ -15,7 +15,7 @@ public:
 	Sphere(float x, float y, float z, float radius)
 			: center(new Point(x, y, z)), radius(radius) {}
 
-	bool intersects(Ray *r);
+	bool intersects(Ray *ray);
 	float intersectsWhen(Ray *ray);
 };
 

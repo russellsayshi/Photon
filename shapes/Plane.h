@@ -6,7 +6,7 @@
 #define PHOTON_PLANE_H
 
 
-class Plane {
+class Plane : public Shape {
 public:
 	Vec3* normal;
 	double dotBoi;
@@ -21,7 +21,7 @@ public:
 		dotBoi = d;
 	}
 
-	bool intersects(Ray *r);
+	bool intersects(Ray *ray);
 	double intersectsWhen(Ray *ray);
 };
 
