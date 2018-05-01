@@ -93,3 +93,26 @@ int photon::win::get_key() {
 void photon::win::delay(int time) {
 	SDL_Delay(3000);
 }
+
+photon::window_event photon::win::get_event() {
+	using namespace photon;
+	SDL_Event event;
+	if(!SDL_PollEvent(&event)) {
+		window_event res(true, -1);
+		return res;
+	}
+	switch(event.type) {
+		case SDL_KEYDOWN: {
+			window_event res(false, window_event::KEYDOWN);
+			return res;
+		} break;
+		case SDL_QUIT: {
+			window_event res(false, window_event::QUIT);
+			return res;
+		} break;
+		default: {
+			window_event res(false, window_event::UNKNOWN);
+			return res;
+		} break;
+	}
+}

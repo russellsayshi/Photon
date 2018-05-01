@@ -3,7 +3,7 @@
 #include <SDL2/SDL.h>
 
 #include "window.h"
-
+#include "window_event.h"
 #include "util/Vec3.h"
 #include "util/Ray.h"
 #include "shapes/Sphere.h"
@@ -109,6 +109,14 @@ int main(int argc, char* argv[]) {
 		} else {
 			window.update();
 			break;
+		}
+		photon::window_event event;
+		while(!(event = window.get_event()).is_empty()) {
+			if(event.get_type() == event.QUIT) {
+				return 0;
+			} else if(event.get_type() == event.KEYDOWN) {
+				return 0;
+			}
 		}
 	}
 	window.get_key();
