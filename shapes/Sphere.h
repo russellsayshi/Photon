@@ -8,15 +8,15 @@
 class Sphere : public Shape {
 public:
 	Point *center;
-	float radius;
+	double radius;
 
 	Sphere() : Sphere(0, 0, 0, 1) {}
 
-	Sphere(float x, float y, float z, float radius)
+	Sphere(double x, double y, double z, double radius)
 			: center(new Point(x, y, z)), radius(radius) {}
 
 	bool intersects(Ray *ray);
-	float intersectsWhen(Ray *ray);
+	double intersectsWhen(Ray *ray);
 };
 
 #endif //PHOTON_SPHERE_H

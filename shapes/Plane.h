@@ -13,11 +13,11 @@ public:
 
 	Plane() : Plane(0, 0, 0, 1) {}
 
-	Plane(float a, float b, float c, float d)
+	Plane(double a, double b, double c, double d)
 			: normal(new Vec3(a, b, c)), dotBoi(d) {}
 
-	Plane(float a, float b, float c, float x, float y, float z) : Plane(a, b, c, 0) {
-		float d = a * x + b * y + c * z;
+	Plane(double a, double b, double c, double x, double y, double z) : Plane(a, b, c, 0) {
+		double d = a * x + b * y + c * z;
 		dotBoi = d;
 	}
 
