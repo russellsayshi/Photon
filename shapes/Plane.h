@@ -18,8 +18,9 @@ public:
 			: normal(new Vec3(a, b, c)), dotBoi(d) {}
 
 	Plane(double a, double b, double c, double x, double y, double z) : Plane(a, b, c, 0) {
-		double d = a * x + b * y + c * z;
-		dotBoi = d;
+		Vec3* tv = new Vec3(a,b,c);
+		Vec3* tp = new Vec3(x,y,z);
+		dotBoi = (double)tv->dot(*tp);
 	}
 
 	bool intersects(Ray *ray);
