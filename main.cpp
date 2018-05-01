@@ -20,17 +20,17 @@ int main(int argc, char* argv[]) {
 
 	const int numSpheres = 10;
 	const int numPlanes = 4;
+	const int numShapes = numSpheres + numPlanes;
 
-	Sphere* spheres[numSpheres];
-	Plane* planes[numPlanes];
+	Shape* shapes[numShapes];
 
 	for(int i = 0; i < numSpheres; i++)
-		spheres[i] = new Sphere(0, 0, -i, 2);
+		shapes[i] = new Sphere(0, 0, -i, 2);
 
-	planes[0] = new Plane(0,0,1,5,5,5);
-	planes[1] = new Plane(0,0,-1,5,-5,-5);
-	planes[2] = new Plane(0,1,0,5,5,5);
-	planes[3] = new Plane(0,-1,0,5,-5,-5);
+	shapes[numSpheres + 0] = new Plane(0,0,1,5,5,5);
+	shapes[numSpheres + 1] = new Plane(0,0,-1,5,-5,-5);
+	shapes[numSpheres + 2] = new Plane(0,1,0,5,5,5);
+	shapes[numSpheres + 3] = new Plane(0,-1,0,5,-5,-5);
 
 
 	/*
@@ -60,51 +60,29 @@ int main(int argc, char* argv[]) {
 			for (int col = 0; col < width; col++) {
 				float tMax = 10000;
 				bool multi = false;
-				int planeMax = -1;
-				for (int plane = 0; plane < numPlanes; plane++) {
-					Plane* p = planes[plane];
-					float t = p->intersectsWhen(rays[row][col]);
-					if (t < tMax && t > 0) {
-						if(tMax != 10000) multi = true;
-						tMax = t;
-						planeMax = plane;
-						//std::cout << t << std::endl;
-					}
-				}
-				if(tMax != 10000) {
-					Colors::color c = Colors::color(planeMax * 200, (int)(255-tMax*10), (int)(100 + tMax*10));
-					window.set_pixel(row, col, c);
-				}
-			}
-		}
-
-		for (int row = 0; row < height; row++) {
-			for (int col = 0; col < width; col++) {
-				float tMax = 10000;
-				bool multi = false;
-				int sphereMax = -1;
-				for (int sphere = 0; sphere < numSpheres; sphere++) {
-					Sphere* s = spheres[sphere];
+				int shapeMax = -1;
+				for (int shape = 0; shape < numShapes; shape++) {
+					Shape* s = shapes[shape];
 					float t = s->intersectsWhen(rays[row][col]);
 					if (t < tMax && t > 0) {
 						if(tMax != 10000) multi = true;
 						tMax = t;
-						sphereMax = sphere;
+						shapeMax = shape;
 						//std::cout << t << std::endl;
 					}
 				}
 				if(tMax != 10000) {
-					Colors::color c = Colors::color(sphereMax * 200, (int)(255-tMax*10), (int)(100 + tMax*10));
+					Colors::color c = Colors::color(shapeMax * 200, (int)(255-tMax*10), (int)(100 + tMax*10));
 					window.set_pixel(row, col, c);
 				}
 			}
 		}
 		if(animated) {
 			for(int i = 0; i < numSpheres; i++) {
-				spheres[i]->center->x = 3 * sin((animVar +i) * cos(2 * animVar));
-				spheres[i]->center->y = sin(animVar + i) * 3;
-				spheres[i]->center->z = 5 - i + cos(1.5f * animVar + 2*i);
-				spheres[i]->radius = (float)(2+sin(animVar + i));
+				((Sphere*)(shapes[i]))->center.x = 3 * sin((animVar +i) * cos(2 * animVar));
+				((Sphere*)(shapes[i]))->center.y = sin(animVar + i) * 5;
+				((Sphere*)(shapes[i]))->center.z = 5 - i + cos(1.5f * animVar + 2*i);
+				((Sphere*)(shapes[i]))->radius = (float)(2+sin(animVar + i));
 			}
 			animVar += 0.01f;
 			window.update();

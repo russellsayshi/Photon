@@ -2,9 +2,9 @@
 #include <cmath>
 
 bool Plane::intersects(Ray* ray) {
-	double a = normal->x;
-	double b = normal->y;
-	double c = normal->z;
+	double a = normal.x;
+	double b = normal.y;
+	double c = normal.z;
 	double e = ray->vector->x;
 	double g = ray->vector->y;
 	double i = ray->vector->z;
@@ -16,9 +16,9 @@ bool Plane::intersects(Ray* ray) {
 }
 
 double Plane::intersectsWhen(Ray* ray) {
-	double a = normal->x;
-	double b = normal->y;
-	double c = normal->z;
+	double a = normal.x;
+	double b = normal.y;
+	double c = normal.z;
 	double d = dotBoi;
 	double e = ray->vector->x;
 	double f = ray->point->x;
