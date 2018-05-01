@@ -9,10 +9,13 @@ namespace photon {
 		bool empty;
 		int type;
 	public:
-		const int KEYDOWN = SDL_KEYDOWN;
-		const int QUIT = SDL_QUIT;
-		bool isEmpty();
-		int getType();
+		window_event(bool empty1, int type1) : empty(empty1), type(type1) {}
+		window_event() : empty(true), type(UNKNOWN) {}
+		static const int KEYDOWN = SDL_KEYDOWN;
+		static const int QUIT = SDL_QUIT;
+		static const int UNKNOWN = 5555;
+		bool is_empty();
+		int get_type();
 	};
 };
 
