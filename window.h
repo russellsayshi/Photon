@@ -5,6 +5,7 @@
 
 #include "Video.h"
 #include "Colors.h"
+#include "window_event.h"
 
 #ifndef PROTON_WIN_HEADER
 #define PROTON_WIN_HEADER
@@ -36,6 +37,7 @@ namespace photon {
 		void clear();
 		void delay(int time);
 		int get_key();
+		window_event get_event();
 	};
 
 };

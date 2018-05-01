@@ -17,7 +17,7 @@ public:
 	Polygon(double a, double b, double c, double d)
 			: normal(new Vec3(a, b, c)), dotBoi(d) {}
 
-	Polygon(double a, double b, double c, double x, double y, double z) : Plane(a, b, c, 0) {
+	Polygon(double a, double b, double c, double x, double y, double z) : Polygon(a, b, c, 0) {
 		double d = a * x + b * y + c * z;
 		dotBoi = d;
 	}
