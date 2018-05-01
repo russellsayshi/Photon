@@ -1,5 +1,6 @@
 #include "../util/Point.h"
 #include "../util/Ray.h"
+#include "Shape.h"
 
 #ifndef PHOTON_SPHERE_H
 #define PHOTON_SPHERE_H

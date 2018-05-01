@@ -7,8 +7,10 @@
 
 
 class Shape {
+protected:
+	Shape();
+
 public:
-	Shape() = delete;
 
 	virtual bool intersects(Ray *ray);
 	virtual double intersectsWhen(Ray *ray);
