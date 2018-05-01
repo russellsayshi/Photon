@@ -102,17 +102,17 @@ photon::window_event photon::win::get_event() {
 		return res;
 	}
 	switch(event.type) {
-	case SDL_KEYDOWN: {
-		window_event res(false, window_event::KEYDOWN);
-		return res;
-	} break;
-	case SDL_QUIT: {
-		window_event res(false, window_event::QUIT);
-		return res;
-	} break;
-	default: {
-		window_event res(false, window_event::UNKNOWN);
-		return res;
-	} break;
+		case SDL_KEYDOWN: {
+			window_event res(false, window_event::KEYDOWN);
+			return res;
+		} break;
+		case SDL_QUIT: {
+			window_event res(false, window_event::QUIT);
+			return res;
+		} break;
+		default: {
+			window_event res(false, window_event::UNKNOWN);
+			return res;
+		} break;
 	}
 }
