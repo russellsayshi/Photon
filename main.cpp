@@ -11,11 +11,20 @@
 #include "Matrix.h"
 #include <cmath>
 
+const int width = 640;
+const int height = 640;
+
+void rotate_all_rays_by_matrix(Matrix mat, Ray* rays[][height]) {
+	for (int row = 0; row < height; row++) {
+		for (int col = 0; col < width; col++) {
+			Vec3* prev = rays[row][col]->vector;
+			rays[row][col]->vector = new Vec3(mat * *(rays[row][col]->vector));
+			delete prev;
+		}
+	}
+}
 
 int main(int argc, char* argv[]) {
-	int height = 640;
-	int width = 640;
-
 	photon::win window("apollo drizzle", width, height);
 
 	window.fill(Colors::white);
@@ -51,11 +60,12 @@ int main(int argc, char* argv[]) {
 	float animVar = 0;
 	Ray *rays[height][width];
 
-	bool rotateWhileAnimating = true;
-
-	Matrix rotation = Matrix::x_rotation(M_PI/40);
-	Matrix rotation2 = Matrix::y_rotation(M_PI/200);
-	Matrix rotation3 = Matrix::z_rotation(M_PI/200);
+	Matrix rotation_x = Matrix::x_rotation(M_PI/60);
+	Matrix rotation_y = Matrix::y_rotation(M_PI/60);
+	Matrix rotation_z = Matrix::z_rotation(M_PI/60);
+	Matrix rotation_x_opp = Matrix::x_rotation(-M_PI/60);
+	Matrix rotation_y_opp = Matrix::y_rotation(-M_PI/60);
+	Matrix rotation_z_opp = Matrix::z_rotation(-M_PI/60);
 	for (int row = 0; row < height; row++)
 		for (int col = 0; col < width; col++) {
 			auto deltaZ = (float)(fov * ((height - 2.0 * ((float)row)) / height));
@@ -65,12 +75,6 @@ int main(int argc, char* argv[]) {
 	while(true) {
 		for (int row = 0; row < height; row++) {
 			for (int col = 0; col < width; col++) {
-				if(rotateWhileAnimating) {
-					Vec3* prev = rays[row][col]->vector;
-					rays[row][col]->vector = new Vec3(rotation * (rotation * (rotation3 * *(rays[row][col]->vector))));
-					delete prev;
-				}
-
 				float tMax = 10000;
 				bool multi = false;
 				int shapeMax = -1;
@@ -108,7 +112,30 @@ int main(int argc, char* argv[]) {
 			if(event.get_type() == event.QUIT) {
 				return 0;
 			} else if(event.get_type() == event.KEYDOWN) {
-				return 0;
+				int key = event.get_key();
+				switch(key) {
+					case 27:
+						//escape
+						return 0;
+					case (int)('q'):
+						rotate_all_rays_by_matrix(rotation_x, rays);
+						break;
+					case (int)('e'):
+						rotate_all_rays_by_matrix(rotation_x_opp, rays);
+						break;
+					case (int)('d'):
+						rotate_all_rays_by_matrix(rotation_y, rays);
+						break;
+					case (int)('a'):
+						rotate_all_rays_by_matrix(rotation_y_opp, rays);
+						break;
+					case (int)('w'):
+						rotate_all_rays_by_matrix(rotation_z, rays);
+						break;
+					case (int)('s'):
+						rotate_all_rays_by_matrix(rotation_z_opp, rays);
+						break;
+				}
 			}
 		}
 	}

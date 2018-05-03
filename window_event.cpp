@@ -7,4 +7,7 @@ namespace photon {
 	int window_event::get_type() {
 		return this->type;
 	}
+	int window_event::get_key() {
+		return this->key;
+	}
 };
