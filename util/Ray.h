@@ -15,6 +15,9 @@ struct Ray {
 
 	Ray(float Px, float Py, float Pz, float Vx, float Vy, float Vz)
 			: point(new Point(Px, Py, Pz)), vector(new Vec3(Vx, Vy, Vz)) {}
+
+	Ray(float Px, float Py, float Pz, Vec3* vec)
+			: point(new Point(Px, Py, Pz)), vector(vec) {}
 };
 
 #endif

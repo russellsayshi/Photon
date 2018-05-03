@@ -11,6 +11,7 @@ struct Vec3 {
     //constructors
     Vec3() : x(0), y(0), z(0) {}
     Vec3(const float x, const float y, const float z) : x(x), y(y), z(z) {}
+    Vec3(const Vec3& other) : x(other.x), y(other.y), z(other.z) {}
 
     //operators
     Vec3 operator+(const Vec3& other) const { return Vec3 (this->x + other.x, this->y + other.y, this->z + other.z); } //addition

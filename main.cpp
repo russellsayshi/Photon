@@ -8,13 +8,15 @@
 #include "util/Ray.h"
 #include "shapes/Sphere.h"
 #include "shapes/Plane.h"
+#include "Matrix.h"
+#include <cmath>
 
 
 int main(int argc, char* argv[]) {
 	int height = 640;
 	int width = 640;
 
-	photon::win window("apollo drizzle", height, width);
+	photon::win window("apollo drizzle", width, height);
 
 	window.fill(Colors::white);
 
@@ -49,6 +51,11 @@ int main(int argc, char* argv[]) {
 	float animVar = 0;
 	Ray *rays[height][width];
 
+	bool rotateWhileAnimating = true;
+
+	Matrix rotation = Matrix::x_rotation(M_PI/40);
+	Matrix rotation2 = Matrix::y_rotation(M_PI/200);
+	Matrix rotation3 = Matrix::z_rotation(M_PI/200);
 	for (int row = 0; row < height; row++)
 		for (int col = 0; col < width; col++) {
 			auto deltaZ = (float)(fov * ((height - 2.0 * ((float)row)) / height));
@@ -58,6 +65,12 @@ int main(int argc, char* argv[]) {
 	while(true) {
 		for (int row = 0; row < height; row++) {
 			for (int col = 0; col < width; col++) {
+				if(rotateWhileAnimating) {
+					Vec3* prev = rays[row][col]->vector;
+					rays[row][col]->vector = new Vec3(rotation * (rotation * (rotation3 * *(rays[row][col]->vector))));
+					delete prev;
+				}
+
 				float tMax = 10000;
 				bool multi = false;
 				int shapeMax = -1;
