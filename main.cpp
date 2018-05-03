@@ -176,19 +176,19 @@ int main(int argc, char* argv[]) {
 						camera_position = camera_position - current_rotation_x;
 						update_ray_positions_to_match_camera(camera_position, rays);
 						break;
-					case (int)('j'):
+					case (int)('l'):
 						camera_position = camera_position + current_rotation_y;
 						update_ray_positions_to_match_camera(camera_position, rays);
 						break;
-					case (int)('l'):
+					case (int)('j'):
 						camera_position = camera_position - current_rotation_y;
 						update_ray_positions_to_match_camera(camera_position, rays);
 						break;
-					case (int)('u'):
+					case (int)('o'):
 						camera_position = camera_position + current_rotation_z;
 						update_ray_positions_to_match_camera(camera_position, rays);
 						break;
-					case (int)('o'):
+					case (int)('u'):
 						camera_position = camera_position - current_rotation_z;
 						update_ray_positions_to_match_camera(camera_position, rays);
 						break;
