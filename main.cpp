@@ -40,14 +40,15 @@ int main(int argc, char* argv[]) {
 	window.fill(Colors::white);
 
 	const int numSpheres = 10;
-	const int numPlanes = 4;
-	const int numShapes = numSpheres;
+	const int numPlanes = 1;
+	const int numShapes = numSpheres + numPlanes;
 
 	Shape* shapes[numShapes];
 
 	for(int i = 0; i < numSpheres; i++)
 		shapes[i] = new Sphere(0, 0, -i, 2);
 
+	shapes[numSpheres + 0] = new Plane(1,1,0,0,0,0);
 	//shapes[numSpheres + 0] = new Plane(0,0,1,5,5,5);
 	//shapes[numSpheres + 1] = new Plane(0,0,-1,5,-5,-5);
 	//shapes[numSpheres + 2] = new Plane(0,1,0,5,5,5);
@@ -62,7 +63,7 @@ int main(int argc, char* argv[]) {
 	planes[2] = new Plane(0,1,0,1);
 	planes[3] = new Plane(0,-1,0,-1);
 	*/
-	bool animated = false;
+	bool animated = true;
 
 	Vec3 camera_position(15, 0, 0);
 
@@ -194,6 +195,7 @@ int main(int argc, char* argv[]) {
 				}
 			}
 		}
+		std::cout << camera_position << std::endl;
 	}
 	window.get_key();
 
