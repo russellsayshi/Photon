@@ -34,6 +34,6 @@ double Sphere::intersectsWhen(Ray *r) {
 	if(det < 0) {
 		return -1;
 	}
-	double t = (-b + (double)sqrt(det))/(2*a);
+	double t = (-b + (double)sqrt(det))/(2*a);	// this is the + of the + or -, giving the back face of the sphere?
 	return -t * (double)(r->vector->mag());
 }

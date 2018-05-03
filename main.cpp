@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
 	for(int i = 0; i < numSpheres; i++)
 		shapes[i] = new Sphere(0, 0, -i, 2);
 
-	shapes[numSpheres + 0] = new Plane(1,1,0,0,0,0);
+	shapes[numSpheres + 0] = new Plane(0,1,0,0,0,0);
 	//shapes[numSpheres + 0] = new Plane(0,0,1,5,5,5);
 	//shapes[numSpheres + 1] = new Plane(0,0,-1,5,-5,-5);
 	//shapes[numSpheres + 2] = new Plane(0,1,0,5,5,5);
@@ -93,7 +93,7 @@ int main(int argc, char* argv[]) {
 					window.set_pixel(col, row, Colors::gray);
 				}
 
-				float tMax = 10000;
+				float tMax = 10000;	// set this to negative to look for the closer sides of the spheres - SA
 				bool multi = false;
 				int shapeMax = -1;
 				for (int shape = 0; shape < numShapes; shape++) {
@@ -196,6 +196,8 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		std::cout << camera_position << std::endl;
+		std::cout << current_rotation_x << std::endl;
+		std::cout << "------------------------" << std::endl;
 	}
 	window.get_key();
 
