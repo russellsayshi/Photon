@@ -18,6 +18,7 @@ public:
 	constexpr static color pink = make_tuple((Uint8)255, (Uint8)0, (Uint8)128);
 	constexpr static color white = make_tuple((Uint8)255, (Uint8)255, (Uint8)255);
 	constexpr static color black = make_tuple((Uint8)0, (Uint8)0, (Uint8)0);
+	constexpr static color gray = make_tuple((Uint8)100, (Uint8)100, (Uint8)100);
 };
 
 

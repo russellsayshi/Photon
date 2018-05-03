@@ -1,4 +1,3 @@
-#include "../util/Point.h"
 #include "../util/Ray.h"
 #include "Shape.h"
 
@@ -8,13 +7,13 @@
 
 class Sphere : public Shape {
 public:
-	Point center;
+	Vec3 center;
 	double radius;
 
 	Sphere() : Sphere(0, 0, 0, 1) {}
 
 	Sphere(double x, double y, double z, double radius)
-			: center(Point(x, y, z)), radius(radius) {}
+			: center(Vec3(x, y, z)), radius(radius) {}
 
 	bool intersects(Ray *ray);
 	double intersectsWhen(Ray *ray);

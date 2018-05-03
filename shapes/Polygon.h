@@ -1,4 +1,3 @@
-#include "../util/Point.h"
 #include "../util/Ray.h"
 #include "../util/Vec3.h"
 #include "Shape.h"

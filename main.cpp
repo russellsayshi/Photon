@@ -24,6 +24,16 @@ void rotate_all_rays_by_matrix(Matrix mat, Ray* rays[][height]) {
 	}
 }
 
+void update_ray_positions_to_match_camera(Vec3 new_position, Ray* rays[][height]) {
+	for (int row = 0; row < height; row++) {
+		for (int col = 0; col < width; col++) {
+			Vec3* prev = rays[row][col]->point;
+			rays[row][col]->point = new Vec3(new_position);
+			delete prev;
+		}
+	}
+}
+
 int main(int argc, char* argv[]) {
 	photon::win window("apollo drizzle", width, height);
 
@@ -31,30 +41,30 @@ int main(int argc, char* argv[]) {
 
 	const int numSpheres = 10;
 	const int numPlanes = 4;
-	const int numShapes = numSpheres + numPlanes;
+	const int numShapes = numSpheres;
 
 	Shape* shapes[numShapes];
 
 	for(int i = 0; i < numSpheres; i++)
 		shapes[i] = new Sphere(0, 0, -i, 2);
 
-	shapes[numSpheres + 0] = new Plane(0,0,1,5,5,5);
-	shapes[numSpheres + 1] = new Plane(0,0,-1,5,-5,-5);
-	shapes[numSpheres + 2] = new Plane(0,1,0,5,5,5);
-	shapes[numSpheres + 3] = new Plane(0,-1,0,5,-5,-5);
+	//shapes[numSpheres + 0] = new Plane(0,0,1,5,5,5);
+	//shapes[numSpheres + 1] = new Plane(0,0,-1,5,-5,-5);
+	//shapes[numSpheres + 2] = new Plane(0,1,0,5,5,5);
+	//shapes[numSpheres + 3] = new Plane(0,-1,0,5,-5,-5);
 
-
+	Vec3 current_rotation_x(1, 0, 0);
+	Vec3 current_rotation_y(0, 1, 0);
+	Vec3 current_rotation_z(0, 0, 1);
 	/*
 	planes[0] = new Plane(0,0,1,1);
 	planes[1] = new Plane(0,0,-1,-1);
 	planes[2] = new Plane(0,1,0,1);
 	planes[3] = new Plane(0,-1,0,-1);
 	*/
-	bool animated = true;
+	bool animated = false;
 
-	const float xCam = 15.0;
-	const float yCam = 0.0;
-	const float zCam = 0.0;
+	Vec3 camera_position(15, 0, 0);
 
 	double fov = .5;
 	float animVar = 0;
@@ -70,11 +80,18 @@ int main(int argc, char* argv[]) {
 		for (int col = 0; col < width; col++) {
 			auto deltaZ = (float)(fov * ((height - 2.0 * ((float)row)) / height));
 			auto deltaY = (float)(fov * ((width - 2.0 * ((float)col)) / width));
-			rays[row][col] = new Ray(xCam, yCam, zCam, 1, deltaY, deltaZ);
+			rays[row][col] = new Ray(camera_position.x, camera_position.y, camera_position.z, 1, deltaY, deltaZ);
 		}
 	while(true) {
 		for (int row = 0; row < height; row++) {
 			for (int col = 0; col < width; col++) {
+				int v = ((row / 50 % 2) + (col / 50 % 2)) % 2;
+				if(v == 1) {
+					window.set_pixel(col, row, Colors::white);
+				} else {
+					window.set_pixel(col, row, Colors::gray);
+				}
+
 				float tMax = 10000;
 				bool multi = false;
 				int shapeMax = -1;
@@ -89,8 +106,8 @@ int main(int argc, char* argv[]) {
 					}
 				}
 				if(tMax != 10000) {
-					Colors::color c = Colors::color(shapeMax * 200, (int)(255-tMax*10), (int)(100 + tMax*10));
-					window.set_pixel(row, col, c);
+					Colors::color c = Colors::color(shapeMax * 200, (int)(255-5*10), (int)(100 + 5*10));
+					window.set_pixel(col, row, c);
 				}
 			}
 		}
@@ -102,11 +119,8 @@ int main(int argc, char* argv[]) {
 				((Sphere*)(shapes[i]))->radius = (float)(2+sin(animVar + i));
 			}
 			animVar += 0.01f;
-			window.update();
-		} else {
-			window.update();
-			break;
 		}
+		window.update();
 		photon::window_event event;
 		while(!(event = window.get_event()).is_empty()) {
 			if(event.get_type() == event.QUIT) {
@@ -117,23 +131,65 @@ int main(int argc, char* argv[]) {
 					case 27:
 						//escape
 						return 0;
-					case (int)('q'):
-						rotate_all_rays_by_matrix(rotation_x, rays);
-						break;
 					case (int)('e'):
+						rotate_all_rays_by_matrix(rotation_x, rays);
+						current_rotation_x = rotation_x * current_rotation_x;
+						current_rotation_y = rotation_x * current_rotation_y;
+						current_rotation_z = rotation_x * current_rotation_z;
+						break;
+					case (int)('q'):
 						rotate_all_rays_by_matrix(rotation_x_opp, rays);
-						break;
-					case (int)('d'):
-						rotate_all_rays_by_matrix(rotation_y, rays);
-						break;
-					case (int)('a'):
-						rotate_all_rays_by_matrix(rotation_y_opp, rays);
-						break;
-					case (int)('w'):
-						rotate_all_rays_by_matrix(rotation_z, rays);
+						current_rotation_x = rotation_x_opp * current_rotation_x;
+						current_rotation_y = rotation_x_opp * current_rotation_y;
+						current_rotation_z = rotation_x_opp * current_rotation_z;
 						break;
 					case (int)('s'):
+						rotate_all_rays_by_matrix(rotation_y, rays);
+						current_rotation_x = rotation_y * current_rotation_x;
+						current_rotation_y = rotation_y * current_rotation_y;
+						current_rotation_z = rotation_y * current_rotation_z;
+						break;
+					case (int)('w'):
+						rotate_all_rays_by_matrix(rotation_y_opp, rays);
+						current_rotation_x = rotation_y_opp * current_rotation_x;
+						current_rotation_y = rotation_y_opp * current_rotation_y;
+						current_rotation_z = rotation_y_opp * current_rotation_z;
+						break;
+					case (int)('a'):
+						rotate_all_rays_by_matrix(rotation_z, rays);
+						current_rotation_x = rotation_z * current_rotation_x;
+						current_rotation_y = rotation_z * current_rotation_y;
+						current_rotation_z = rotation_z * current_rotation_z;
+						break;
+					case (int)('d'):
 						rotate_all_rays_by_matrix(rotation_z_opp, rays);
+						current_rotation_x = rotation_z_opp * current_rotation_x;
+						current_rotation_y = rotation_z_opp * current_rotation_y;
+						current_rotation_z = rotation_z_opp * current_rotation_z;
+						break;
+					case (int)('k'):
+						camera_position = camera_position + current_rotation_x;
+						update_ray_positions_to_match_camera(camera_position, rays);
+						break;
+					case (int)('i'):
+						camera_position = camera_position - current_rotation_x;
+						update_ray_positions_to_match_camera(camera_position, rays);
+						break;
+					case (int)('j'):
+						camera_position = camera_position + current_rotation_y;
+						update_ray_positions_to_match_camera(camera_position, rays);
+						break;
+					case (int)('l'):
+						camera_position = camera_position - current_rotation_y;
+						update_ray_positions_to_match_camera(camera_position, rays);
+						break;
+					case (int)('u'):
+						camera_position = camera_position + current_rotation_z;
+						update_ray_positions_to_match_camera(camera_position, rays);
+						break;
+					case (int)('o'):
+						camera_position = camera_position - current_rotation_z;
+						update_ray_positions_to_match_camera(camera_position, rays);
 						break;
 				}
 			}
