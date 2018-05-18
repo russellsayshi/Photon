@@ -51,6 +51,10 @@ int main(int argc, char* argv[]) {
 	for(int i = 0; i < numSpheres; i++)
 		shapes[i] = new Sphere(0, 0, -i, 2);
 
+	//Cube c = Cube(0,0,0,1);
+	//double d = 1.0/15.0;
+	//std::cout << d << " " << c.intersectsWhen(new Ray(15, 0, 0, 1, d, 0)) << std::endl;
+
 	//shapes[numSpheres + 0] = new Polygon(0,1,0,0,0,0);
 	//shapes[numSpheres + 1] = new Polygon(0,0,1,0,0,0);
 	
