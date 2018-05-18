@@ -29,8 +29,8 @@ double Polygon::intersectsWhen(Ray* ray) {
 	double numerator = a*f + b*h + c*j + d;
 	double denominator = a*e + b*g + c*i;
 	double ans = -1 * numerator / denominator;
-	if(ans < 0) {
+	if(ans > 0) {
 		return -1;
 	}
-	return ans * (double)(ray->vector->mag());
+	return (-1) * ans * (double)(ray->vector->mag());
 }
